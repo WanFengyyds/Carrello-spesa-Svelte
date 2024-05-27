@@ -22,9 +22,6 @@
 			var(--beige-2),
 			var(--lemon-chiffon)
 		);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
+		margin: 0;
 	}
 </style>

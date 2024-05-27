@@ -25,7 +25,7 @@
 			}),
 		});
 		const result = await response.json();
-		data.plainItems.push({
+		data.push({
 			id: result,
 			idCarrello: data.url,
 			nome: nome,
@@ -37,93 +37,65 @@
 </script>
 
 <section class="carrello">
-	<div class="cointainer">
-		<h1 class="title">Carrello della spesa</h1>
+	<div class="listaCarrello">
+		<div class="containerCarrello">
+			<h1 class="title">Carrello della spesa</h1>
+			<ListaCarrello items={data.plainItems} />
+		</div>
+	</div>
 
-		<div>
-			<div class="input">
-				<input
-					class="input-campo"
-					placeholder="Cosa devi comprare? "
-					on:keydown={(e) => {
-						if (e.key !== "Enter") return;
-						addItem(e.currentTarget.value);
-						e.currentTarget.value = "";
-					}}
-				/>
-			</div>
-
-			<div class="todo">
-				<ListaCarrello
-					items={data.plainItems}
-					allItem={data.plainItemsAll}
-				/>
-			</div>
+	<div class="sideBar">
+		<div class="sideBarContainer">
+			<h1 class="titoloSidebar">Supermercato</h1>
 		</div>
 	</div>
 </section>
 
 <style>
-	.input {
-		justify-content: center;
-		display: flex;
-	}
-	.input-campo {
-		width: 100%;
-		border: 0.06rem solid #d2d2d2bf;
-		border-radius: 0.5rem;
-		padding: 1.25rem;
-		font-size: 1rem;
-	}
-	.cointainer {
-		background-color: white;
-		padding: 5% 15%;
-		border-radius: 20px; /* Rounded corners */
-		width: 100%;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	}
-
-	.title {
-		text-align: center;
-		font-family: "Courier New", Courier, monospace;
-		color: #191970;
-		font-size: 60px;
-		text-transform: uppercase;
-		text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-	}
-
 	.carrello {
-		margin: auto;
-		border: 0;
-		padding: 0;
-		width: 500px; /* Width of the square */
-		height: 100vh; /* Height of the square */
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
+		flex-direction: row;
+		height: 100vh;
 	}
 
-	@media (max-width: 576px) {
-		.title {
-			font-size: 24px;
-		}
+	.listaCarrello {
+		flex: 0.65;
+		padding: 5%;
+	}
+	.containerCarrello {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		background-color: white;
+		width: 100%;
+		height: 100%;
+		border-radius: 3%;
+	}
+	.title {
+		font-family: "Courier New", Courier, monospace;
+		font-size: 40px;
+	}
 
-		.carrello {
-			width: 100%; /* Full width on small screens */
-			height: auto; /* Adjust height */
-			padding: 10px; /* Add some padding */
-		}
+	/* SideBar */
+	.sideBar {
+		flex: 0.35;
+		padding: 2%;
+	}
 
-		.input-campo {
-			padding: 1rem; /* Adjust padding */
-			font-size: 0.875rem; /* Adjust font size */
-		}
+	.sideBarContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgb(255, 255, 255, 0.7);
+		width: 100%;
+		height: 100%;
+		border-radius: 3%;
+	}
 
-		.cointainer {
-			padding: 5% 5%;
-			width: 90%;
-		}
+	.titoloSidebar {
+		color: black;
+		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+		font-size: 30px;
 	}
 </style>

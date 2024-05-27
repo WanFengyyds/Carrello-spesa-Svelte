@@ -68,37 +68,15 @@
     {/each}
 </div>
 
-<aside>
-    <h1 class="titoloSideBar">Lista Item</h1>
-    {#each allItem as item}
-        <p>{item.nome}</p>
-    {/each}
-</aside>
-
 <style>
-    .titoloSideBar {
-        text-align: center;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 30px;
-    }
-    aside {
-        position: fixed;
-        top: 0;
-        right: 0; /* Positioning the aside element on the right side */
-        width: 300px;
-        height: 100%;
-        background-color: #2c3e50;
-        color: white;
-        overflow-x: hidden;
-        transition: transform 0.5s;
-    }
-
     .item {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
     .singoloItem {
+        background-color: rgb(223, 108, 223, 0.7);
+        border-radius: 10px;
         padding: 0;
         display: flex;
         flex-direction: row;
@@ -111,7 +89,7 @@
         overflow: auto;
         width: fit-content;
         align-items: center;
-        gap: 1.2rem;
+        gap: 10px;
         padding: 1.3rem;
         width: 500px;
         font-size: 25px;
