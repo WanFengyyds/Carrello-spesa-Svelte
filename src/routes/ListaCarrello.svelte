@@ -1,7 +1,7 @@
 <script>
     import { flip } from "svelte/animate";
     export let items;
-    export let allItem;
+    //export let allItem;
     function toggleActive(item) {
         item.comprato = !item.comprato;
         items = [...items];
@@ -52,7 +52,7 @@
                             toggleActive(item);
                         }}
                     />
-                    <label for="02-11">{item.nome}</label>
+                    <label for="02-11" class="nome">{item.nome}</label>
                 </div>
 
                 <input type="hidden" name="id" value={item.id} />
@@ -75,7 +75,6 @@
         align-items: center;
     }
     .singoloItem {
-        background-color: rgb(223, 108, 223, 0.7);
         border-radius: 10px;
         padding: 0;
         display: flex;
@@ -140,7 +139,7 @@
     }
 
     .checkbox-wrapper-11 {
-        --text: #414856;
+        --text: #000000;
         --check: #4f29f0;
         --disabled: #c3c8de;
         --border-radius: 10px;

@@ -1,6 +1,7 @@
 <script>
 	import { loadExtension } from "better-sqlite3/lib/methods/wrappers";
 	import ListaCarrello from "../../ListaCarrello.svelte";
+	import SideBar from "../../SideBar.svelte";
 	import { browser } from "$app/environment";
 	import { writable } from "svelte/store";
 
@@ -47,6 +48,7 @@
 	<div class="sideBar">
 		<div class="sideBarContainer">
 			<h1 class="titoloSidebar">Supermercato</h1>
+			<SideBar allItems={data.plainItemsAll} />
 		</div>
 	</div>
 </section>
@@ -67,27 +69,28 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
-		background-color: white;
+		background-color: rgb(255, 255, 255, 0.05);
+		border-radius: 3%;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
 		width: 100%;
 		height: 100%;
-		border-radius: 3%;
 	}
 	.title {
-		font-family: "Courier New", Courier, monospace;
 		font-size: 40px;
 	}
 
 	/* SideBar */
 	.sideBar {
 		flex: 0.35;
-		padding: 2%;
+		padding: 5%;
 	}
 
 	.sideBarContainer {
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: rgb(255, 255, 255, 0.7);
+		flex-direction: column;
+		background-color: rgb(255, 255, 255, 0.1);
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+		overflow: auto;
 		width: 100%;
 		height: 100%;
 		border-radius: 3%;
@@ -95,7 +98,7 @@
 
 	.titoloSidebar {
 		color: black;
-		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 		font-size: 30px;
+		text-align: center;
 	}
 </style>
