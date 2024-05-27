@@ -1,14 +1,11 @@
 <script>
     import { flip } from "svelte/animate";
     export let items;
+    export let listaItems;
     function toggleActive(item) {
         item.comprato = !item.comprato;
         items = [...items];
     }
-    /*function removeItem(itemToRemove) {  
-
-        items = items.filter((item) => item !== itemToRemove);
-    }*/
 
     async function deleteItem(id, itemToRemove) {
         const response = await fetch("/api/add", {
