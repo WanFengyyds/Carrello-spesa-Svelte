@@ -11,7 +11,7 @@ export function getCarrello() {
     return rows;
 }
 export function getAllItems() {
-    const sql = "SELECT * FROM listaItems"
+    const sql = "SELECT * FROM listaItem"
 
     const stmnt = db.prepare(sql);
     const rows = stmnt.all();

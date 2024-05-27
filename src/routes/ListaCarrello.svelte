@@ -1,7 +1,7 @@
 <script>
     import { flip } from "svelte/animate";
     export let items;
-    export let listaItems;
+    export let allItem;
     function toggleActive(item) {
         item.comprato = !item.comprato;
         items = [...items];
@@ -70,6 +70,9 @@
 
 <aside>
     <h1 class="titoloSideBar">Lista Item</h1>
+    {#each allItem as item}
+        <p>{item.nome}</p>
+    {/each}
 </aside>
 
 <style>

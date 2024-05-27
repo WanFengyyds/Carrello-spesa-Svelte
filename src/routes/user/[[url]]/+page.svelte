@@ -54,7 +54,10 @@
 			</div>
 
 			<div class="todo">
-				<ListaCarrello items={data.plainItems} />
+				<ListaCarrello
+					items={data.plainItems}
+					allItem={data.plainItemsAll}
+				/>
 			</div>
 		</div>
 	</div>
