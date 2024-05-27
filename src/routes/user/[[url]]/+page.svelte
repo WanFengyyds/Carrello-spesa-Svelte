@@ -33,7 +33,6 @@
 			comprato: 0,
 		});
 		data.plainItems = [...data.plainItems];
-		console.log(data.plainItems);
 	}
 </script>
 

@@ -31,8 +31,6 @@
         const url = `/user/${guid}`;
         window.location.href = url;
     }
-
-    console.log(generateUUID());
     onMount(() => {
         let currentGuid = localStorage.getItem("userId");
         if (currentGuid != null) {

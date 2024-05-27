@@ -71,8 +71,29 @@
     {/each}
 </div>
 
+<aside>
+    <h1 class="titoloSideBar">Lista Item</h1>
+</aside>
+
 <style>
-    .item{
+    .titoloSideBar {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 30px;
+    }
+    aside {
+        position: fixed;
+        top: 0;
+        right: 0; /* Positioning the aside element on the right side */
+        width: 300px;
+        height: 100%;
+        background-color: #2c3e50;
+        color: white;
+        overflow-x: hidden;
+        transition: transform 0.5s;
+    }
+
+    .item {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -420,35 +441,34 @@
     }
 
     @media (max-width: 576px) {
-    .itemList {
-        width: 100%; /* Make item list full width */
-        height: auto; /* Adjust height */
-        font-size: 20px; /* Adjust font size */
-        padding: 1rem; /* Adjust padding */
-    }
-    
-    .singoloItem {
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the start */
-    }
+        .itemList {
+            width: 100%; /* Make item list full width */
+            height: auto; /* Adjust height */
+            font-size: 20px; /* Adjust font size */
+            padding: 1rem; /* Adjust padding */
+        }
 
-    .checkbox-wrapper-11 {
-        grid-template-columns: 25px auto; /* Adjust grid columns */
-        padding: 3px; /* Adjust padding */
-    }
+        .singoloItem {
+            flex-direction: column; /* Stack items vertically */
+            align-items: flex-start; /* Align items to the start */
+        }
 
-    .checkbox-wrapper-11 input[type="checkbox"] {
-        height: 12px; /* Adjust size of checkbox */
-        width: 12px; /* Adjust size of checkbox */
-    }
+        .checkbox-wrapper-11 {
+            grid-template-columns: 25px auto; /* Adjust grid columns */
+            padding: 3px; /* Adjust padding */
+        }
 
-    .checkbox-wrapper-11 label::before {
-        left: -24px; /* Adjust position */
-    }
+        .checkbox-wrapper-11 input[type="checkbox"] {
+            height: 12px; /* Adjust size of checkbox */
+            width: 12px; /* Adjust size of checkbox */
+        }
 
-    .checkbox-wrapper-11 label:after {
-        left: -22px; /* Adjust position */
-    }
-}
+        .checkbox-wrapper-11 label::before {
+            left: -24px; /* Adjust position */
+        }
 
+        .checkbox-wrapper-11 label:after {
+            left: -22px; /* Adjust position */
+        }
+    }
 </style>
