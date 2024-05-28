@@ -27,7 +27,7 @@ export function addCarrello(url, nome, price) {
         prezzo: price,
         comprato: 0
     });
-    return rows.lastInsertRowid
+    return rows.lastInsertRowid;
 }
 
 export function removeItemInDataBase(id) {
@@ -52,12 +52,16 @@ export function updateCarrello(id, comprato) {
     });
 }
 
-
 export function sortCarrello(categoria) {
     const sql = `SELECT * FROM listaItem WHERE categoria=$categoria`;
     const stmnt = db.prepare(sql);
     const result = stmnt.all({ categoria: categoria })
-    console.log(result)
     return result;
+}
 
+export function getCarrelloWithUrl(url) {
+    const sql = `SELECT * FROM carrello WHERE idCarrello=$idCarrello`;
+    const stmnt = db.prepare(sql);
+    const result = stmnt.all({ idCarrello: url })
+    return result;
 }

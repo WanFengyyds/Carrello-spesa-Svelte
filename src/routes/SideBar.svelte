@@ -1,6 +1,7 @@
 <script>
     import { page } from "$app/stores";
     export let allItems;
+    export let items;
     async function changeSort(tipo) {
         const response = await fetch("/api/add", {
             method: "POST",
@@ -16,6 +17,10 @@
     }
 
     async function addItem(item) {
+        let coord = window.location.href.replace(
+            "http://localhost:5173/user/",
+            "",
+        );
         const response = await fetch("/api/add", {
             method: "PUT",
             headers: {
@@ -31,6 +36,15 @@
             }),
         });
         const result = await response.json();
+        const newItem = {
+            id: result,
+            idCarrello: coord,
+            nome: item.nome,
+            prezzo: item.prezzo,
+            comprato: 0,
+        };
+        items = [...items, newItem];
+        console.log(items);
     }
 </script>
 
@@ -119,8 +133,11 @@
                     <span class="marca">by {item.marca}</span>
                     <br />
                     <span class="prezzo">Costo: {item.prezzo} $</span>
-                    <button class="aggiungi" on:click={() => addItem(item)}
-                        >ADD TO CART</button
+                    <button
+                        class="aggiungi"
+                        on:click={() => {
+                            addItem(item);
+                        }}>ADD TO CART</button
                     >
                 </div>
                 <img src={item.imgLink} alt="alternatetext" class="immagine" />

@@ -2,10 +2,6 @@
     import { flip } from "svelte/animate";
     export let items;
     //export let allItem;
-    function toggleActive(item) {
-        item.comprato = !item.comprato;
-        items = [...items];
-    }
 
     async function deleteItem(id, itemToRemove) {
         const response = await fetch("/api/add", {
@@ -23,7 +19,7 @@
 
     async function updateItem(item) {
         const response = await fetch("/api/add", {
-            method: "PATH",
+            method: "PATCH",
             headers: {
                 "content-type": "application/json",
             },
@@ -33,27 +29,26 @@
             }),
         });
         const result = await response.json();
+        item.comprato = !item.comprato;
+        items = [...items];
     }
 </script>
 
 <div class="itemList">
-    {#each items as item (item.id)}
+    {#each items as item}
         <ul class="singoloItem">
-            <label class="item">
-                <div class="checkbox-wrapper-11">
-                    <input
-                        id="02-11"
-                        type="checkbox"
-                        name="id"
-                        value={item.id}
-                        checked={item.comprato}
-                        on:change={() => {
-                            updateItem(item);
-                            toggleActive(item);
-                        }}
-                    />
-                    <label for="02-11" class="nome">{item.nome}</label>
-                </div>
+            <div class="checkbox-wrapper-11">
+                <input
+                    id="02-11"
+                    type="checkbox"
+                    name="id"
+                    value={item.id}
+                    checked={item.comprato}
+                    on:change={() => {
+                        updateItem(item);
+                    }}
+                />
+                <label for="02-11" class="nome">{item.nome}</label>
 
                 <input type="hidden" name="id" value={item.id} />
                 <button
@@ -63,17 +58,12 @@
                 >
                     <i class="ri-delete-bin-line"></i>
                 </button>
-            </label>
+            </div>
         </ul>
     {/each}
 </div>
 
 <style>
-    .item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
     .singoloItem {
         border-radius: 10px;
         padding: 0;
@@ -146,7 +136,8 @@
         border-radius: var(--border-radius);
         position: relative;
         padding: 5px;
-        display: grid;
+        display: flex;
+        justify-content: row;
         grid-template-columns: 30px auto;
         align-items: center;
     }

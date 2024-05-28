@@ -48,7 +48,10 @@
 	<div class="sideBar">
 		<div class="sideBarContainer">
 			<h1 class="titoloSidebar">Supermercato</h1>
-			<SideBar allItems={data.plainItemsAll} />
+			<SideBar
+				allItems={data.plainItemsAll}
+				bind:items={data.plainItems}
+			/>
 		</div>
 	</div>
 </section>

@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { _urlUser } from '../../+page.server.js'
-import { updateCarrello, removeItemInDataBase, addCarrello, sortCarrello } from "../../../lib/server/db/index.js"
+import { updateCarrello, removeItemInDataBase, addCarrello, sortCarrello, getCarrello } from "../../../lib/server/db/index.js"
 
 
 /** @type {import('./$types').RequestHandler} */
@@ -27,3 +27,9 @@ export async function POST({ request }) {
 	let x = await sortCarrello(categoria)
 	return json(x);
 }
+
+export async function GET({ request }) {
+	let x = await getCarrello()
+	return json(x);
+}
+
