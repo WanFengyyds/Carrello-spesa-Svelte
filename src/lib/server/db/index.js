@@ -51,3 +51,13 @@ export function updateCarrello(id, comprato) {
         id: id
     });
 }
+
+
+export function sortCarrello(categoria) {
+    const sql = `SELECT * FROM listaItem WHERE categoria=$categoria`;
+    const stmnt = db.prepare(sql);
+    const result = stmnt.all({ categoria: categoria })
+    console.log(result)
+    return result;
+
+}

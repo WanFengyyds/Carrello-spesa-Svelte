@@ -23,7 +23,7 @@
 
     async function updateItem(item) {
         const response = await fetch("/api/add", {
-            method: "POST",
+            method: "PATH",
             headers: {
                 "content-type": "application/json",
             },

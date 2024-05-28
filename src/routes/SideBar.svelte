@@ -1,5 +1,37 @@
 <script>
+    import { page } from "$app/stores";
     export let allItems;
+    async function changeSort(tipo) {
+        const response = await fetch("/api/add", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({
+                categoria: tipo,
+            }),
+        });
+        const result = await response.json();
+        allItems = result;
+    }
+
+    async function addItem(item) {
+        const response = await fetch("/api/add", {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({
+                url: window.location.href.replace(
+                    "http://localhost:5173/user/",
+                    "",
+                ),
+                nome: item.nome,
+                prezzo: item.prezzo,
+            }),
+        });
+        const result = await response.json();
+    }
 </script>
 
 <div class="sort">
@@ -14,16 +46,66 @@
         </button>
 
         <ul class="dropdown-menu dropdown-menu-dark" style="">
-            <li><button class="dropdown-item active">bevanda</button></li>
-            <li><button class="dropdown-item">frutta</button></li>
-            <li><button class="dropdown-item">panificio</button></li>
-            <li><button class="dropdown-item">latticini</button></li>
-            <li><button class="dropdown-item">alimenti</button></li>
-            <li><button class="dropdown-item">snack</button></li>
-            <li><button class="dropdown-item">carne</button></li>
-            <li><button class="dropdown-item">pesce</button></li>
-            <li><button class="dropdown-item">verdura</button></li>
-            <li><button class="dropdown-item">dolci</button></li>
+            <li>
+                <button
+                    class="dropdown-item active"
+                    on:click={() => changeSort("bevanda")}>bevanda</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("frutta")}>frutta</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("panificio")}>panificio</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("latticini")}>latticini</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("alimenti")}>alimenti</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("snack")}>snack</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("carne")}>carne</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("pesce")}>pesce</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("verdura")}>verdura</button
+                >
+            </li>
+            <li>
+                <button
+                    class="dropdown-item"
+                    on:click={() => changeSort("dolci")}>dolci</button
+                >
+            </li>
         </ul>
     </div>
 </div>
@@ -36,8 +118,10 @@
                     <span class="nome">{item.nome}</span>
                     <span class="marca">by {item.marca}</span>
                     <br />
-                    <br />
                     <span class="prezzo">Costo: {item.prezzo} $</span>
+                    <button class="aggiungi" on:click={() => addItem(item)}
+                        >ADD TO CART</button
+                    >
                 </div>
                 <img src={item.imgLink} alt="alternatetext" class="immagine" />
             </div>
@@ -46,18 +130,31 @@
 </div>
 
 <style>
+    .aggiungi {
+        opacity: 1;
+        background-color: rgb(240, 248, 255, 0);
+        box-shadow: none;
+        border: 0;
+    }
+    .prezzo {
+        font-size: 30px;
+    }
     .sortbutton {
         margin: 0;
         padding: 0;
         background-color: rgb(0, 0, 0, 0);
         box-shadow: none;
         border: 0px;
+        height: 100%;
+        width: auto;
     }
     .sort {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: end;
         width: 100%;
+        height: 50px;
+        padding-right: 75px;
     }
 
     .nome {
@@ -66,8 +163,11 @@
         font-family: "Nunito", sans-serif;
         font-optical-sizing: auto;
         font-style: normal;
-        font-size: 25px;
-        align-self: flex-start;
+        font-size: 30px;
+    }
+
+    .marca {
+        font-size: 20px;
     }
     .lista {
         display: flex;

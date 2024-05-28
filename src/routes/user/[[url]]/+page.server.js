@@ -6,6 +6,7 @@ export let _urlUser;
 let items = [];
 let listOfAllItems = [];
 
+
 export function load({ params }) {
 	items.length = 0;
 	let arrayNotSorted = getCarrello();
@@ -35,7 +36,4 @@ export function load({ params }) {
 		plainItems,
 		url: params.url
 	};
-
-
-
 }
