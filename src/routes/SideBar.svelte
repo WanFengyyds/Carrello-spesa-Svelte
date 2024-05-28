@@ -44,7 +44,6 @@
             comprato: 0,
         };
         items = [...items, newItem];
-        console.log(items);
     }
 </script>
 

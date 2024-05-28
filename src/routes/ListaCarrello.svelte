@@ -36,39 +36,47 @@
 
 <div class="itemList">
     {#each items as item}
-        <ul class="singoloItem">
-            <div class="checkbox-wrapper-11">
-                <input
-                    id="02-11"
-                    type="checkbox"
-                    name="id"
-                    value={item.id}
-                    checked={item.comprato}
-                    on:change={() => {
-                        updateItem(item);
-                    }}
-                />
-                <label for="02-11" class="nome">{item.nome}</label>
+        <ul class="containerItem">
+            <div class="oggetto">
+                <div class="checkbox-wrapper-11">
+                    <input
+                        id="checkbox-{item.id}"
+                        type="checkbox"
+                        name="id"
+                        value={item.id}
+                        checked={item.comprato}
+                        on:change={() => {
+                            updateItem(item);
+                        }}
+                    />
+                    <label for="checkbox-{item.id}" class="nome"
+                        >{item.nome} {item.prezzo}€</label
+                    >
 
-                <input type="hidden" name="id" value={item.id} />
-                <button
-                    class="remove-button"
-                    aria-label="Remove"
-                    on:click={deleteItem(item.id, item)}
-                >
-                    <i class="ri-delete-bin-line"></i>
-                </button>
+                    <input type="hidden" name="id" value={item.id} />
+                    <button
+                        class="remove-button"
+                        aria-label="Remove"
+                        on:click={deleteItem(item.id, item)}
+                    >
+                        <i class="ri-delete-bin-line"></i>
+                    </button>
+                </div>
             </div>
         </ul>
     {/each}
 </div>
 
 <style>
-    .singoloItem {
-        border-radius: 10px;
-        padding: 0;
+    .oggetto {
         display: flex;
-        flex-direction: row;
+        justify-content: center;
+    }
+    .containerItem {
+        background-color: rgb(230, 225, 225, 0.1);
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
     }
 
     .itemList {
