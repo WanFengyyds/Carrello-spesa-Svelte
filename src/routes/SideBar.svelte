@@ -1,7 +1,10 @@
 <script>
     import { page } from "$app/stores";
+    import { browser } from "$app/environment";
+    import { writable } from "svelte/store";
     export let allItems;
     export let items;
+
     async function changeSort(tipo) {
         const response = await fetch("/api/add", {
             method: "POST",
@@ -14,6 +17,8 @@
         });
         const result = await response.json();
         allItems = result;
+        let item = allItems[0];
+        writable(browser && localStorage.setItem("sort", item.categoria));
     }
 
     async function addItem(item) {

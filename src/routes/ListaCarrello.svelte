@@ -98,6 +98,7 @@
     /* Track (the area behind the scrollbar) */
     .itemList::-webkit-scrollbar-track {
         background: #f1f1f1; /* Color of the track */
+        border-radius: 4px;
     }
 
     /* Handle (the draggable part of the scrollbar) */

@@ -21,10 +21,12 @@ export function load({ params }) {
 
 	listOfAllItems.length = 0;
 	let arrayAllItemsNotSorted = getAllItems();
+
 	arrayAllItemsNotSorted.forEach(sort => {
 		listOfAllItems.push(
 			new ListItems(sort.id, sort.nome, sort.imgLink, sort.marca, sort.categoria, sort.prezzo, sort.quantitaRimanante)
 		)
+
 	});
 
 	const plainItems = items.map(item => item.toPlainObject());

@@ -3,9 +3,11 @@
 	import ListaCarrello from "../../ListaCarrello.svelte";
 	import SideBar from "../../SideBar.svelte";
 	import { browser } from "$app/environment";
-	import { writable } from "svelte/store";
+	import { readable, writable } from "svelte/store";
+	import { onMount } from "svelte";
 
 	export let data;
+	export let informazione = data.plainItemsAll;
 	writable(
 		browser &&
 			localStorage.setItem(
@@ -13,6 +15,28 @@
 				window.location.href.replace("http://localhost:5173/user/", ""),
 			),
 	);
+
+	onMount(() => {
+		const storedSort = localStorage.getItem("sort");
+		if (storedSort) {
+			console.log(storedSort);
+			informazione = [];
+			data.plainItemsAll.forEach((element) => {
+				if (element.categoria == storedSort) {
+					informazione.push(
+						element.id,
+						element.nome,
+						element.imgLink,
+						element.marca,
+						element.categoria,
+						element.prezzo,
+						element.quantitaRimanante,
+					);
+				}
+			});
+		}
+		console.log(informazione);
+	});
 
 	async function addItem(nome) {
 		const response = await fetch("/api/add", {
@@ -48,10 +72,7 @@
 	<div class="sideBar">
 		<div class="sideBarContainer">
 			<h1 class="titoloSidebar">Supermercato</h1>
-			<SideBar
-				allItems={data.plainItemsAll}
-				bind:items={data.plainItems}
-			/>
+			<SideBar allItems={informazione} bind:items={data.plainItems} />
 		</div>
 	</div>
 </section>
